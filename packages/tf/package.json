@@ -1,0 +1,18 @@
+{
+  "name": "@cdk-tf-sls-cf-comparison/tf",
+  "version": "1.0.0",
+  "license": "ISC",
+  "scripts": {
+    "install": "sh ./install.sh",
+    "predeploy": "esbuild src/writer.ts --sourcemap --bundle --keep-names --platform=node --target=node16 --external:aws-sdk --outdir=./out && zip -r out.zip ./out",
+    "deploy": "terraform apply -auto-approve",
+    "remove": "terraform destroy -auto-approve"
+  },
+  "devDependencies": {
+    "esbuild": "^0.15.14",
+    "@types/aws-lambda": "^8.10.108"
+  },
+  "dependencies": {
+    "aws-lambda": "^1.0.7"
+  }
+}

@@ -1,0 +1,59 @@
+service: cdkVsTfVsSlsVsCf-sls-example
+
+variablesResolutionMode: 20210219
+configValidationMode: warn
+unresolvedVariablesNotificationMode: error
+
+plugins:
+  - serverless-pseudo-parameters
+  - serverless-esbuild
+  - serverless-iam-roles-per-function
+
+package:
+  individually: true
+
+custom:
+  project: template
+  baseName: ${self:custom.project}-${self:service}-${opt:stage}
+  esbuild:
+    platform: node
+    target: node14
+    bundle: true
+    minify: true
+    sourcemap: true
+    keepNames: true
+  serverless-iam-roles-per-function:
+    defaultInherit: true
+
+provider:
+  name: aws
+  stage: ${opt:stage}
+  stackName: ${self:custom.baseName}
+  runtime: nodejs16.x
+  tracing:
+    lambda: true
+  deploymentBucket:
+    blockPublicAccess: true
+  logRetentionInDays: 30
+  stackTags:
+    STACK: "${self:custom.baseName}"
+    SERVICE: "${self:service}"
+    PROJECT: "${self:custom.project}"
+    STAGE: "${opt:stage}"
+  environment:
+    AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1"
+    DEBUG: "false"
+    NODE_OPTIONS: "--enable-source-maps"
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - xray:PutTelemetryRecords
+            - xray:PutTraceSegments
+          Resource: "*"
+
+functions:
+  passing:
+    name: ${self:custom.baseName}-passing
+    handler: src/passing.handler

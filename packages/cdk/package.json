@@ -1,0 +1,25 @@
+{
+  "name": "@cdk-tf-sls-cf-comparison/cdk",
+  "version": "0.1.0",
+  "description": "",
+  "license": "UNLICENSED",
+  "author": "",
+  "bin": {
+    "infra": "infra/bin/example-service.ts"
+  },
+  "scripts": {
+    "cdk": "node_modules/.bin/cdk"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.108",
+    "aws-cdk": "^2.45.0",
+    "aws-cdk-lib": "^2.45.0",
+    "constructs": "^10.0.0",
+    "esbuild": "^0.14.11",
+    "ts-node": "^10.8.0",
+    "typescript": "^4.8.3"
+  },
+  "dependencies": {
+    "aws-lambda": "^1.0.7"
+  }
+}

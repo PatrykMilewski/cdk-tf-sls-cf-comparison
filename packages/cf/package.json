@@ -1,0 +1,10 @@
+{
+  "name": "@cdk-tf-sls-cf-comparison/cf",
+  "version": "1.0.0",
+  "license": "ISC",
+  "scripts": {
+    "install": "./install.sh",
+    "deploy": "aws cloudformation deploy --template-file ./stack.yml --stack-name cdkVsTfVsSlsVsCf-cf-example",
+    "delete-stack": "aws cloudformation deploy --stack-name cdkVsTfVsSlsVsCf-cf-example"
+  }
+}

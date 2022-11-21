@@ -1,0 +1,14 @@
+{
+  "name": "@cdk-tf-sls-cf-comparison/sls",
+  "version": "1.0.0",
+  "license": "ISC",
+  "scripts": {
+    "deploy": "sls deploy",
+    "remove": "sls remove"
+  },
+  "devDependencies": {
+    "serverless": "^3.24.1",
+    "serverless-esbuild": "^1.33.2",
+    "serverless-iam-roles-per-function": "^3.2.0"
+  }
+}
